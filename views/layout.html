@@ -90,7 +90,7 @@
       <div class="container">         
         <div class="sixteen columns">
           <h1 class="remove-bottom" id="mainheader" style="margin-top: .5em;">
-          {{=response.title or request.application}}
+          {{=A(response.title or request.application, _href=URL('index'))}}
           </h1>
           <h5>{{=response.subtitle or ''}}</h5>
         </div>

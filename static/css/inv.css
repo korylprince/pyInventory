@@ -2,6 +2,19 @@
     color: #0069d6;
 }
 
+#mainheader a:link {
+    text-decoration:none;
+}
+#mainheader a:visited {
+    text-decoration:none;
+}
+#mainheader a:hover {
+    text-decoration:none;
+}
+#mainheader a:active {
+    text-decoration:none;
+}
+
 .header .container {
     border-bottom: 1px solid #ddd;
 }
