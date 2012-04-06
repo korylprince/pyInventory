@@ -1,0 +1,12 @@
+{{right_sidebar_enabled = True}}
+{{extend 'layout.html'}}
+There are currently {{=totalrecs}} devices... Go ahead and {{=A('add another', _href=addurl)}}.
+
+{{block right_sidebar}}
+<div id="searchsidebar">
+<h3>Quick Search</h3>
+{{=form1}}
+{{=form2}}
+<span>{{=A('Advanced Search', _href=url)}}</span>
+</div>
+{{end}}

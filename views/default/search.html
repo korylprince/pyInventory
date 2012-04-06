@@ -1,0 +1,43 @@
+{{extend 'layout.html'}}
+{{
+if len(records) != 0:
+outputTable = SQLTABLE(records)
+# Fix Header
+for x in outputTable.components[0].components[0].components :
+    x.components[0] = x.components[0][len('devices.'):]
+    x.components[0] = x.components[0].replace('_',' ')
+pass
+
+# Add links to elements
+for x in outputTable.components[1].components:
+    id = x.components[0].components[0]
+    for y in x.components:
+        y.components[0] = A(y.components[0], _href=URL('edit', vars=dict(search=id,type='id')))
+    pass
+pass
+response.write(outputTable)
+else:
+    response.write(form)
+pass
+}}
+<!-- Prevent submission on Enter -->
+<script type="text/javascript">
+$(document).ready(function() {
+    $(':text').live("keypress", function(e) {
+    /* ENTER PRESSED*/
+    if (e.keyCode == 13) {
+    /* FOCUS ELEMENT */
+    var inputs = $(this).parents("form").eq(0).find(":text");
+    var idx = inputs.index(this);
+     
+    if (idx == inputs.length - 1) {
+    inputs[0].select()
+    } else {
+    inputs[idx + 1].focus(); // handles submit buttons
+    inputs[idx + 1].select();
+    }
+    return false;
+    }
+    });
+});
+</script>

@@ -1,0 +1,30 @@
+#mainheader {
+    color: #0069d6;
+}
+
+.header .container {
+    border-bottom: 1px solid #ddd;
+}
+
+.record {
+    padding: 5px;
+    width: 50px;
+}
+
+#searchsidebar {
+    text-align: center;
+    border: 1px solid #ddd;
+    overflow: auto;
+}
+
+#searchsidebar input {
+    width: auto;
+    margin: 5px;
+}
+
+#searchsidebar span {
+    float: left;
+    text-align: center;
+    width: 100%;
+    padding-bottom: 10px;
+}
