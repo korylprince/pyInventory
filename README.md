@@ -9,11 +9,10 @@ https://github.com/korylprince/pyInventory
 
 Simply add the application folder to your web2py application folder.
 
-If you are installing this for a new database, you need to set migrate=True in the model db.py
+If you are installing this for a new database, you need to set migrate=True in the model db.py.
 After the tables are created set migrate back to False.
 
-If you are installing over an existing database, but your database metadata got deleted, set migrate=False,fake\_migrate\_all=True
-To create metadata then remove the fake\_migrate\_all.
+If you are installing over an existing database, but your database metadata got deleted, set migrate=False,fake\_migrate\_all=True to create metadata then remove the fake\_migrate\_all.
 
 To use Active Directory with allowed groups, currently web2py must be patched.
 Please see http://www.web2pyslices.com/slice/show/1493/active-directory-ldap-with-allowed-groups on how to set that up.
