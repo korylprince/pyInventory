@@ -7,8 +7,8 @@ response.optimize_css = 'concat,minify,inline'
 response.optimize_js = 'concat,minify,inline'
 
 db.define_table('devices',Field('Inventory_Number','string',unique=True),Field('Serial_Number','string'),\
-Field('Campus','string'),Field('User','string'),Field('Vendor','string'),Field('Room','string'),\
-Field('Network','boolean'),Field('Computer_Present','boolean'),Field('Memo','text'))
+Field('Bag_Tag','string'),Field('Campus','string'),Field('User','string'),Field('Vendor','string'),\
+Field('Room','string'),Field('Network','boolean'),Field('Computer_Present','boolean'),Field('Memo','text'))
 
 # Authentication - http://www.web2pyslices.com/slice/show/1468/how-to-set-up-web2py-ldap-with-windows-active-directory
 from gluon.tools import Auth
