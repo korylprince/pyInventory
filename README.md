@@ -9,7 +9,7 @@ https://github.com/korylprince/pyInventory
 
 Simply add the application folder to your web2py application folder, and copy db.py.def to db.py.
 
-This file contains all configuration options (not very many at the momement.)
+This file contains all configuration options (not very many at the moment.)
 
 If you are installing this for a new database, you need to set migrate=True in the model db.py.
 After the tables are created set migrate back to False.
