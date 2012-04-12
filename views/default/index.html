@@ -5,9 +5,9 @@ There are currently {{=totalrecs}} devices... Go ahead and {{=A('add another', _
 {{block right_sidebar}}
 <div id="searchsidebar">
 <h3>Quick Search</h3>
-{{=form1}}
-{{=form2}}
-{{=form3}}
+{{for form in forms:
+    response.write(form)
+pass}}
 <span>{{=A('Advanced Search', _href=url)}}</span>
 </div>
 {{end}}

@@ -5,12 +5,12 @@ crud = Crud(db)
 
 @auth.requires_login()
 def index():
-    response.subtitle = 'AwesomeSauce.'
-    invsearch=FORM('Inventory Number: ', INPUT(_name='search'), INPUT(_type='submit', _value='Submit'), _action=URL('edit',vars=dict(type='Inventory_Number')))
-    sersearch=FORM('Serial Number: ', INPUT(_name='search'), INPUT(_type='submit', _value='Submit'), _action=URL('edit',vars=dict(type='Serial_Number')))
-    bagsearch=FORM('Bag Tag: ', INPUT(_name='search'), INPUT(_type='submit', _value='Submit'), _action=URL('edit',vars=dict(type='Bag_Tag')))
+    response.subtitle = 'What next?'
+    forms = []
+    for search in searches:
+        forms.append(FORM(search.replace('_',' ') + ': ', INPUT(_name='search'), INPUT(_type='submit', _value='Submit'), _action=URL('edit',vars=dict(type=search))))
     totalrecs = db.executesql('select count(*) from devices')[0][0] 
-    return dict(url=URL('search'),addurl=URL('add'),form1=invsearch,form2=sersearch,form3=bagsearch,totalrecs=totalrecs)
+    return dict(url=URL('search'),addurl=URL('add'),forms=forms,totalrecs=totalrecs)
 
 @auth.requires_login()
 def search():
@@ -39,7 +39,7 @@ def edit():
 
 @auth.requires_login()
 def add():
-    response.subtitle = 'Bingie.'
+    response.subtitle = 'Are you sure about this?'
     return dict(form=crud.create(db.devices))
 
 

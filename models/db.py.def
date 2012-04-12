@@ -34,3 +34,6 @@ base_dn='OU=baseou,DC=example,DC=com')]
 
 # set Title for all pages
 response.title = 'Change Me!'
+
+# Set Quick Search fields
+searches = ['Inventory_Number','Serial_Number','Bag_Tag']
