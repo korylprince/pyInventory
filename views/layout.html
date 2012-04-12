@@ -77,7 +77,8 @@
           {{is_mobile=request.user_agent().is_mobile}}
       {{if response.menu:}}
           <div id="menu">
-             {{=MENU(response.menu, _class='mobile-menu' if is_mobile else 'sf-menu',mobile=is_mobile)}}
+             <!--{{=MENU(response.menu, _class='mobile-menu' if is_mobile else 'sf-menu',mobile=is_mobile)}}-->
+             {{=MENU(response.menu, _class='sf-menu')}}
           </div>
           {{pass}}
         </div>
