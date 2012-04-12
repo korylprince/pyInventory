@@ -1,6 +1,6 @@
 {{right_sidebar_enabled = True}}
 {{extend 'layout.html'}}
-There are currently {{=totalrecs}} devices... Go ahead and {{=A('add another', _href=addurl)}}.
+There are currently {{=A(totalrecs, _href=URL('search',vars=dict(type='all')))}} devices... Go ahead and {{=A('add another', _href=URL('add'))}}.
 
 {{block right_sidebar}}
 <div id="searchsidebar">
@@ -8,6 +8,6 @@ There are currently {{=totalrecs}} devices... Go ahead and {{=A('add another', _
 {{for form in forms:
     response.write(form)
 pass}}
-<span>{{=A('Advanced Search', _href=url)}}</span>
+<span>{{=A('Advanced Search', _href=URL('search'))}}</span>
 </div>
 {{end}}

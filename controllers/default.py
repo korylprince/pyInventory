@@ -10,11 +10,13 @@ def index():
     for search in searches:
         forms.append(FORM(search.replace('_',' ') + ': ', INPUT(_name='search'), INPUT(_type='submit', _value='Submit'), _action=URL('edit',vars=dict(type=search))))
     totalrecs = db.executesql('select count(*) from devices')[0][0] 
-    return dict(url=URL('search'),addurl=URL('add'),forms=forms,totalrecs=totalrecs)
+    return dict(forms=forms,totalrecs=totalrecs)
 
 @auth.requires_login()
 def search():
     response.subtitle = 'This ain\'t Yo Momma\'s Search.'
+    if request.vars['type'] == 'all':
+        return dict(records=db(db.devices).select())
     for col in db.devices.fields:
         request.vars['chk'+col] = 'on'
     form, records = crud.search(db.devices)
@@ -26,7 +28,11 @@ def search():
 @auth.requires_login()
 def edit():
     response.subtitle = 'Be careful now, Ya Hear?'
-    #Make sure the variables get passed so delete works properly
+    # Make sure search isn't empty
+    if request.vars['search'] == '':
+        session.flash=T("Device Not Found!")
+        redirect(URL('index'))
+    # Make sure the variables get passed so delete works properly
     if 'search' not in request.get_vars.keys() :
         # puts POST vars in GET
         redirect(URL('edit',vars=request.vars))
