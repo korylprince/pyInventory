@@ -3,7 +3,9 @@
 if len(records) != 0:
 outputTable = SQLTABLE(records)
 # Fix Header
-for x in outputTable.components[0].components[0].components :
+#remove id
+del outputTable.components[0].components[0].components[0]
+for x in outputTable.components[0].components[0].components:
     x.components[0] = x.components[0][len('devices.'):]
     x.components[0] = x.components[0].replace('_',' ')
 pass
@@ -11,12 +13,16 @@ pass
 # Add links to elements
 for x in outputTable.components[1].components:
     id = x.components[0].components[0]
+    #remove id
+    del x.components[0]
     for y in x.components:
         y.components[0] = A(y.components[0], _href=URL('edit', vars=dict(search=id,type='id')))
     pass
 pass
 response.write(outputTable)
 else:
+    #remove id from form
+    del form.components[0][0]
     response.write(form)
 pass
 }}
