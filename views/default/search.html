@@ -1,7 +1,7 @@
 {{extend 'layout.html'}}
 {{
 if len(records) != 0:
-outputTable = SQLTABLE(records)
+outputTable = SQLTABLE(records,truncate=25)
 # Fix Header
 #remove id
 del outputTable.components[0].components[0].components[0]

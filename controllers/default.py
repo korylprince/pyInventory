@@ -36,9 +36,17 @@ def edit():
     if 'search' not in request.get_vars.keys() :
         # puts POST vars in GET
         redirect(URL('edit',vars=request.vars))
-    try:
-        foundID = db(db.devices[request.vars['type']]==request.vars['search']).select()[0]['id']
-    except IndexError:
+    # see if any records contain the search text
+    found = db(db.devices[request.vars['type']].like('%'+request.vars['search']+'%')).select()
+    # Multiple records returned so show search page
+    if len(found)>1:
+        response.view = 'default/search.html'
+        return dict(records=found)
+    # Just one found so show edit page
+    elif len(found) == 1:
+        foundID = found[0]['id']
+    # None found - stay at index
+    else:
         session.flash=T("Device Not Found!")
         redirect(URL('index'))
     return dict(form=crud.update(db.devices,foundID))
