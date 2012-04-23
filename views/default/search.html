@@ -26,24 +26,3 @@ else:
     response.write(form)
 pass
 }}
-<!-- Prevent submission on Enter -->
-<script type="text/javascript">
-$(document).ready(function() {
-    $(':text').live("keypress", function(e) {
-    /* ENTER PRESSED*/
-    if (e.keyCode == 13) {
-    /* FOCUS ELEMENT */
-    var inputs = $(this).parents("form").eq(0).find(":text");
-    var idx = inputs.index(this);
-     
-    if (idx == inputs.length - 1) {
-    inputs[0].select()
-    } else {
-    inputs[idx + 1].focus(); // handles submit buttons
-    inputs[idx + 1].select();
-    }
-    return false;
-    }
-    });
-});
-</script>
