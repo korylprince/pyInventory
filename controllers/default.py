@@ -6,8 +6,7 @@ crud = Crud(db)
 @auth.requires_login()
 def index():
     response.subtitle = 'What next?'
-    forms = []
-    for search in searches:
+    forms = [] for search in searches:
         forms.append(FORM(search.replace('_',' ') + ': ', INPUT(_name='search'), INPUT(_type='submit', _value='Submit'), _action=URL('edit',vars=dict(type=search))))
     totalrecs = db.executesql('select count(*) from devices')[0][0] 
     return dict(forms=forms,totalrecs=totalrecs)
@@ -54,7 +53,7 @@ def edit():
 @auth.requires_login()
 def add():
     response.subtitle = 'Are you sure about this?'
-    reponse.view = 'default/edit.html'
+    response.view = 'default/edit.html'
     return dict(form=crud.create(db.devices))
 
 @auth.requires_login()
