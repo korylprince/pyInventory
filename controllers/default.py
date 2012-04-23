@@ -54,7 +54,13 @@ def edit():
 @auth.requires_login()
 def add():
     response.subtitle = 'Are you sure about this?'
+    reponse.view = 'default/edit.html'
     return dict(form=crud.create(db.devices))
+
+@auth.requires_login()
+def help():
+    response.subtitle = 'This here\'s the help.'
+    return dict()
 
 
 def user():
