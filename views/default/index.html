@@ -1,6 +1,6 @@
 {{right_sidebar_enabled = True}}
 {{extend 'layout.html'}}
-There are currently {{=A(totalrecs, _href=URL('search',vars=dict(type='all')))}} devices... Go ahead and {{=A('add another', _href=URL('add'))}}.
+There are currently {{=A(totalrecs, _href=URL('search',vars=dict(type='all'))) if totalrecs != 0 else '0'}} {{='devices' if request.controller == 'default' else 'charges'}}... Go ahead and {{=A('add another', _href=URL('add'))}}.
 
 {{block right_sidebar}}
 <div id="searchsidebar">

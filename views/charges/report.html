@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]><html class="ie ie6 ie-lte9 ie-lte8 ie-lte7 no-js" lang="{{=T.accepted_language or 'en'}}"> <![endif]-->
+<!--[if IE 7]><html class="ie ie7 ie-lte9 ie-lte8 ie-lte7 no-js" lang="{{=T.accepted_language or 'en'}}"> <![endif]-->
+<!--[if IE 8]><html class="ie ie8 ie-lte9 ie-lte8 no-js" lang="{{=T.accepted_language or 'en'}}"> <![endif]-->
+<!--[if IE 9]><html class="ie9 ie-lte9 no-js" lang="{{=T.accepted_language or 'en'}}"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html class="no-js" lang="{{=T.accepted_language or 'en'}}"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8" />
+  <!-- www.phpied.com/conditional-comments-block-downloads/ -->
+  <!-- Always force latest IE rendering engine
+       (even in intranet) & Chrome Frame
+       Remove this if you use the .htaccess -->
+  <!--[if IE]>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge{{=not request.is_local and ',chrome=1' or ''}}">
+  <![endif]-->
+  
+  <title>{{=response.title or request.application}}</title>
+  
+  <!-- http://dev.w3.org/html5/markup/meta.name.html -->
+  <meta name="application-name" content="{{=request.application}}" />
+
+  <!--  Mobile Viewport Fix
+      j.mp/mobileviewport & davidbcalhoun.com/2010/viewport-metatag
+      device-width: Occupy full width of the screen in its current orientation
+      initial-scale = 1.0 retains dimensions instead of zooming out if page height > device height
+      user-scalable = yes allows the user to zoom in -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  
+  <!-- Place favicon.ico and apple-touch-icon.png in the root of your domain and delete these references -->
+  <link rel="shortcut icon" href="{{=URL('static','favicon.ico')}}" type="image/x-icon">
+  <link rel="apple-touch-icon" href="{{=URL('static','favicon.png')}}">
+
+  <!-- All JavaScript at the bottom, except for Modernizr which enables 
+       HTML5 elements & feature detects -->
+  <script src="{{=URL('static','js/modernizr.custom.js')}}"></script>  
+{{
+response.files.append(URL('static','css/skeleton.css'))
+response.files.append(URL('static','css/inv.css'))
+}}
+{{include 'web2py_ajax.html'}}
+</head>
+<body>
+<div id="wrapper">
+<h1>{{=reportheader}}</h1>
+<br />
+<h4>Inventory Reference: {{=A(record.Inventory_Number, _href=URL('default','edit', vars=dict(search=record.Inventory_Number,type='Inventory_Number')))}}</h4><h4>Incident Reference: {{=A(record.Inventory_Number, _href=URL('edit', vars=dict(search=record.Inventory_Number,type='Inventory_Number')))}}</h4>
+<br />
+<div class="container">
+<div class="sixteen columns alpha" style="height: auto;"><h4>Missing or Damaged Items - {{=record.User}}</h4></div>
+<div class="eight columns alpha" style="width: 479px;"><b>Item</b></div><div class="eight columns omega"><b>Cost</b></div>
+{{
+total = 0.0
+for charge in record.Charges:
+    item,cost = charge.split(':')
+    total += float(cost)
+    }}<div class="eight columns alpha" style="width: 479px;">{{ =item}}</div><div class="eight columns omega">{{ ='${0:.2f}'.format(float(cost))}}</div>
+{{pass}}
+<div class="eight columns alpha" style="width: 479px;"><b>Total</b></div><div class="eight columns omega"><b>{{ ='${0:.2f}'.format(float(total))}}</b></div>
+{{import datetime}}
+<div class="signature sixteen columns alpha" style="margin-top:40px;"><b>Date:</b> {{=datetime.datetime.now().ctime()}}</div>
+<div class="signature sixteen columns alpha"><b>User's Name:</b> {{=record.User}}</div>
+<div class="signature sixteen columns alpha"><b>User's Signature:</b></div>
+<div class="signature sixteen columns alpha"><b>Technology Department Technician:</b> {{=db.auth_user[auth.user_id].username}}</div>
+
+</div>
+</div>
+</body>
+</html>

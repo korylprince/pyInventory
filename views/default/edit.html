@@ -1,5 +1,12 @@
-{{extend 'layout.html'}}
+{{extend 'layout.html'}}   
 {{=form}}
+{{
+if 'links' in vars():
+    for link in links:
+        response.write(SPAN(link, _style='margin:10px;'))
+    pass
+pass
+}}
 <!-- Prevent submission on Enter -->
 <script type="text/javascript">
 $(document).ready(function() {
@@ -27,4 +34,3 @@ $(document).ready(function() {
     });
 });
 </script>
-

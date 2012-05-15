@@ -1,5 +1,5 @@
 This is a custom Web Interface for Bullard ISD's inventory system written in web2py.
-The backend will probably change rapidly over the next few weeks.
+The features are now fairly stable.
 I am putting it out here in case anyone finds it of use.
 
 pyInventory
@@ -18,13 +18,15 @@ If you are installing over an existing database, but your database metadata got 
 
 To use Active Directory with allowed groups, currently web2py must be patched.
 Please see http://www.web2pyslices.com/slice/show/1493/active-directory-ldap-with-allowed-groups on how to set that up.
+This issue has been fixed in a new development version of web2py.
 
 If you have any issues or questions, email the email address below, or open an issue at:
 https://github.com/korylprince/pyInventory/issues
 
 #Usage#
 
-Really, this is just a simplified app similar to web2py's default appadmin, with a few different features.
+We use this system to track inventory and to assess damages for this inventory.
+There is an in-application help that you can find at views/default/help.html.
 
 #Copyright Information#
 

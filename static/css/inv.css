@@ -47,3 +47,24 @@ b {
     width: 100%;
     padding-bottom: 10px;
 }
+
+#wrapper, #wrapper h1 {
+    text-align: center;
+}
+
+#wrapper .container div {
+    border: 1px solid #000;
+    margin: 0;
+    margin-bottom: -1px;
+    margin-left: -1px;
+    height: 25px;
+}
+
+.signature {
+    text-align: left;
+    padding: 5px;
+}
+
+.container .sixteen.columns.signature {
+    width: 930px;
+}
