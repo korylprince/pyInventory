@@ -45,9 +45,10 @@ class IS_CHARGE(object):
 db.define_table('charges',
 Field('Inventory_Number','string', requires=IS_IN_DB(db,'devices.Inventory_Number')),\
 Field('User','string', requires=IS_NOT_EMPTY()),\
-Field('Charges','list:string', requires=IS_LIST_OF(IS_CHARGE()))
+Field('Amount_Paid','double', default=0.0, requires=IS_NOT_EMPTY()),\
+Field('Charges','list:string', requires=IS_LIST_OF(IS_CHARGE())),\
+Field('Notes','text')
 )
-
 
 # Authentication - http://www.web2pyslices.com/slice/show/1468/how-to-set-up-web2py-ldap-with-windows-active-directory
 from gluon.tools import Auth

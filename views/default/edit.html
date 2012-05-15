@@ -10,11 +10,11 @@ pass
 <!-- Prevent submission on Enter -->
 <script type="text/javascript">
 $(document).ready(function() {
-    $('input,select,textarea').live("keypress", function(e) {
+    $('input,select').live("keypress", function(e) {
     /* ENTER PRESSED*/
     if (e.keyCode == 13) {
     /* FOCUS ELEMENT */
-    var inputs = $(this).parents("form").eq(0).find("input,select,textarea");
+    var inputs = $(this).parents("form").eq(0).find("input,select");
     console.log(inputs);
     var idx = inputs.index(this);
      

@@ -50,13 +50,20 @@ response.files.append(URL('static','css/inv.css'))
 <div class="sixteen columns alpha" style="height: auto;"><h4>Missing or Damaged Items - {{=record.User}}</h4></div>
 <div class="eight columns alpha" style="width: 479px;"><b>Item</b></div><div class="eight columns omega"><b>Cost</b></div>
 {{
-total = 0.0
+total = -record.Amount_Paid
 for charge in record.Charges:
     item,cost = charge.split(':')
     total += float(cost)
     }}<div class="eight columns alpha" style="width: 479px;">{{ =item}}</div><div class="eight columns omega">{{ ='${0:.2f}'.format(float(cost))}}</div>
 {{pass}}
+<div class="eight columns alpha" style="width: 479px;"></div><div class="eight columns omega"></div>
+<div class="eight columns alpha" style="width: 479px;">Amount Paid</div><div class="eight columns omega">-{{ ='${0:.2f}'.format(float(record.Amount_Paid))}}</div>
 <div class="eight columns alpha" style="width: 479px;"><b>Total</b></div><div class="eight columns omega"><b>{{ ='${0:.2f}'.format(float(total))}}</b></div>
+
+{{if record.Notes != None:}}
+<div class="sixteen columns alpha" style="margin-top:40px; height:auto; text-align:left;padding: 5px;"><b>Notes:</b><br />{{=record.Notes}}</div>
+{{pass}}
+
 {{import datetime}}
 <div class="signature sixteen columns alpha" style="margin-top:40px;"><b>Date:</b> {{=datetime.datetime.now().ctime()}}</div>
 <div class="signature sixteen columns alpha"><b>User's Name:</b> {{=record.User}}</div>

@@ -43,7 +43,10 @@ def edit():
         # puts POST vars in GET
         redirect(URL('edit',vars=request.vars))
     # see if any records contain the search text
-    found = db(db.charges[request.vars['type']].like('%'+request.vars['search']+'%')).select()
+    if request.vars['type'] != 'id':
+        found = db(db.charges[request.vars['type']].like('%'+request.vars['search']+'%')).select()
+    else:
+        found = db(db.charges.id == request.vars['search']).select()
     # Multiple records returned so show search page
     if len(found)>1:
         response.view = 'default/search.html'
