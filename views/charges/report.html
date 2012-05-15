@@ -60,8 +60,8 @@ for charge in record.Charges:
 <div class="eight columns alpha" style="width: 479px;">Amount Paid</div><div class="eight columns omega">-{{ ='${0:.2f}'.format(float(record.Amount_Paid))}}</div>
 <div class="eight columns alpha" style="width: 479px;"><b>Total</b></div><div class="eight columns omega"><b>{{ ='${0:.2f}'.format(float(total))}}</b></div>
 
-{{if record.Notes != None:}}
-<div class="sixteen columns alpha" style="margin-top:40px; height:auto; text-align:left;padding: 5px;"><b>Notes:</b><br />{{=record.Notes}}</div>
+{{if record.Notes != None and record.Notes != '':}}
+<div class="sixteen columns alpha" style="margin-top:40px; height:auto; text-align:left; padding: 5px; width: 930px;"><b>Notes:</b><br />{{=record.Notes}}</div>
 {{pass}}
 
 {{import datetime}}
