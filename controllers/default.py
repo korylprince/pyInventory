@@ -1,7 +1,4 @@
 # coding: utf8
-# database stuff
-from gluon.tools import Crud
-crud = Crud(db)
 
 @auth.requires_login()
 def index():
