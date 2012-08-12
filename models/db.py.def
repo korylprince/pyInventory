@@ -71,7 +71,7 @@ group_dn = 'OU=Domain Groups,OU=baseou,DC=example,DC=com',
 group_name_attrib = 'cn',
 group_member_attrib = 'member',
 group_filterstr = 'objectClass=Group',
-server='server.example.com,
+server='server.example.com',
 base_dn='OU=baseou,DC=example,DC=com')]
 
 # set Title for all pages
