@@ -56,7 +56,7 @@ def edit():
     else:
         session.flash=T("Device Not Found!")
         redirect(URL('index'))
-    links = [A('Generate Report', _href=URL('report',vars=dict(id=foundID))),A('Inventory Reference', _href=URL('default','edit',vars=dict(type='Inventory_Number',search=found[0].Inventory_Number)))]
+    links = [A('Generate Report', _href=URL('report',vars=dict(id=foundID))),A('Generate Final Report', _href=URL('report',vars=dict(id=foundID,final=True))),A('Inventory Reference', _href=URL('default','edit',vars=dict(type='Inventory_Number',search=found[0].Inventory_Number)))]
     return dict(form=crud.update(db.charges,foundID, next=URL('report',vars=dict(id=foundID))),links=links)
 @auth.requires_login()
 def add():

@@ -71,6 +71,10 @@ for charge in record.Charges:
 <div class="signature sixteen columns alpha"><b>Technology Department Technician:</b> {{=db.auth_user[auth.user_id].username}}</div>
 
 </div>
+{{if 'final' not in request.vars or request.vars['final'] != 'True':}}
+<p style="padding:5px;margin-bottom:0px;">This is not a final bill. Prices subject to change.</p>
+{{pass}}
+<p style="padding:5px;">Until balance is paid in full, a computer will not be issued for the next school year.</p>
 </div>
 </body>
 </html>
