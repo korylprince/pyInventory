@@ -65,6 +65,39 @@ b {
     padding: 5px;
 }
 
-.container .sixteen.columns.signature {
-    width: 930px;
+.charge-report {
+    min-width: 100%;
+    min-height: 100%;
+}
+
+.container {
+    width: 100%;
+    max-width: 960px;
+}
+
+.charge-report table {
+    width: 100%;
+}
+
+.charge-report table thead {
+    height: 35px;
+}
+
+.charge-report table tr {
+    height: 25px;
+}
+
+.charge-report table td, .charge-report table th {
+    border: 1px solid #000;
+    padding: 5px;
+}
+
+.charge-report table th {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.charge-report .columns {
+    width: 99% !important;
+    margin-right: 0px;
 }

@@ -41,24 +41,32 @@ response.files.append(URL('static','css/inv.css'))
 {{include 'web2py_ajax.html'}}
 </head>
 <body>
-<div id="wrapper">
+    <div id="wrapper" class="charge-report">
 <h1>{{=reportheader}}</h1>
 <br />
 <h4>Inventory Reference: {{=A(record.Inventory_Number, _href=URL('default','edit', vars=dict(search=record.Inventory_Number,type='Inventory_Number')))}}</h4><h4>Incident Reference: {{=A(record.Inventory_Number, _href=URL('edit', vars=dict(search=record.Inventory_Number,type='Inventory_Number')))}}</h4>
 <br />
 <div class="container">
-<div class="sixteen columns alpha" style="height: auto;"><h4>Missing or Damaged Items - {{=record.User}}</h4></div>
-<div class="eight columns alpha" style="width: 479px;"><b>Item</b></div><div class="eight columns omega"><b>Cost</b></div>
-{{
-total = -record.Amount_Paid
-for charge in record.Charges:
-    item,cost = charge.split(':')
-    total += float(cost)
-    }}<div class="eight columns alpha" style="width: 479px;">{{ =item}}</div><div class="eight columns omega">{{ ='${0:.2f}'.format(float(cost))}}</div>
-{{pass}}
-<div class="eight columns alpha" style="width: 479px;"></div><div class="eight columns omega"></div>
-<div class="eight columns alpha" style="width: 479px;">Amount Paid</div><div class="eight columns omega">-{{ ='${0:.2f}'.format(float(record.Amount_Paid))}}</div>
-<div class="eight columns alpha" style="width: 479px;"><b>Total</b></div><div class="eight columns omega"><b>{{ ='${0:.2f}'.format(float(total))}}</b></div>
+
+    <table>
+        <thead>
+            <tr><th colspan=2>Missing or Damaged Items - {{=record.User}}</th></tr>
+        </thead>
+        <tbody>
+            <tr><td><strong>Item</strong></td><td><strong>Cost</strong></td></tr>
+            {{
+            total = -record.Amount_Paid
+            for charge in record.Charges:
+            item,cost = charge.split(':')
+            total += float(cost)
+            }}
+            <tr><td>{{ =item}}</td><td>{{ ='${0:.2f}'.format(float(cost))}}</td></tr>
+            <tr><td></td><td></td></tr>
+            <tr><td>Amount Paid</td><td>-{{ ='${0:.2f}'.format(float(record.Amount_Paid))}}</td></tr>
+            {{pass}}
+            <tr><td><strong>Total</strong></td><td><strong>{{ ='${0:.2f}'.format(float(total))}}</strong></td></tr>
+        </tbody>
+    </table>
 
 {{if record.Notes != None and record.Notes != '':}}
 <div class="sixteen columns alpha" style="margin-top:40px; height:auto; text-align:left; padding: 5px; width: 930px;"><b>Notes:</b><br />{{=record.Notes}}</div>
