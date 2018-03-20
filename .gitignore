@@ -6,3 +6,4 @@ cache/*
 private/*
 *.pyc
 *.bak
+*.swp
