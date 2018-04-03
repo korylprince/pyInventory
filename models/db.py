@@ -40,7 +40,6 @@ Field("PO_Number", "string"),\
 Field("Model", "string"),\
 Field("Campus", "string"),\
 Field("Room", "string"),\
-Field("On_Network", "boolean"),\
 Field("Notes", "text")\
 )
 
