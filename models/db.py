@@ -78,6 +78,8 @@ auth.settings.actions_disabled=["register", "change_password", "request_reset_pa
 # you don't have to remember me
 auth.settings.remember_me_form = False
 
+auth.settings.expiration = int(os.environ.get("INVENTORY_SESSION_EXPIRATION", 3600))
+
 # ldap authentication and not save password on web2py
 auth.settings.login_methods = [ldap_auth(
     mode="ad",
