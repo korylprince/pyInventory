@@ -8,7 +8,7 @@ RUN git clone --branch "v1.0" --single-branch --depth 1 \
 RUN go install github.com/korylprince/fileenv
 
 
-FROM alpine:3.7
+FROM alpine:3.8
 
 ARG VERSION
 
