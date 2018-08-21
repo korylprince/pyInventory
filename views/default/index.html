@@ -1,6 +1,14 @@
 {{right_sidebar_enabled = True}}
 {{extend 'layout.html'}}
 There are currently {{=A(totalrecs, _href=URL('search',vars=dict(type='all'))) if totalrecs != 0 else '0'}} {{='devices' if request.controller == 'default' else 'charges'}}... Go ahead and {{=A('add another', _href=URL('add'))}}.
+<div>
+    <h4>Chromebook Portals</h4>
+    <div>
+        Use these portals to check Chromebooks in and out to students:
+        <div><a href="/checkin/">Check-in Portal</a></div>
+        <div><a href="/checkout/">Check-out Portal</a></div>
+    </div>
+</div>
 
 {{block right_sidebar}}
 <div id="searchsidebar">
