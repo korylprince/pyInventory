@@ -5,7 +5,7 @@ I am putting it out here in case anyone finds it of use.
 pyInventory
 https://github.com/korylprince/pyInventory
 
-#Installing#
+# Installing
 
 Simply add the application folder to your web2py application folder, and copy db.py.def to db.py.
 
@@ -23,16 +23,16 @@ This issue has been fixed in a new development version of web2py.
 If you have any issues or questions, email the email address below, or open an issue at:
 https://github.com/korylprince/pyInventory/issues
 
-#Usage#
+# Usage
 
 We use this system to track inventory and to assess damages for this inventory.
 There is an in-application help that you can find at views/default/help.html.
 
-#Copyright Information#
+# Copyright Information
 
 Some of the css and javascript files have their own third-party licenses.
 
-All other code is Copyright 2012 Kory Prince (korylprince at gmail dot com.) This code is licensed under the GPL v3 which is included in this distribution. If you'd like it licensed under another license then send me an email.
+All other code is Copyright 2019 Kory Prince (korylprince at gmail dot com.) This code is licensed under the GPL v3 which is included in this distribution. If you'd like it licensed under another license then send me an email.
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
