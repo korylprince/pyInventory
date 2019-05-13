@@ -61,9 +61,9 @@ response.files.append(URL('static','css/inv.css'))
             total += float(cost)
             }}
             <tr><td>{{ =item}}</td><td>{{ ='${0:.2f}'.format(float(cost))}}</td></tr>
+            {{pass}}
             <tr><td></td><td></td></tr>
             <tr><td>Amount Paid</td><td>-{{ ='${0:.2f}'.format(float(record.Amount_Paid))}}</td></tr>
-            {{pass}}
             <tr><td><strong>Total</strong></td><td><strong>{{ ='${0:.2f}'.format(float(total))}}</strong></td></tr>
         </tbody>
     </table>
