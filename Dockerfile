@@ -2,22 +2,22 @@ FROM golang:1.10-alpine as builder
 
 RUN apk add --no-cache git 
 
-RUN git clone --branch "v1.0" --single-branch --depth 1 \
+RUN git clone --branch "v1.1" --single-branch --depth 1 \
     https://github.com/korylprince/fileenv.git /go/src/github.com/korylprince/fileenv
 
 RUN go install github.com/korylprince/fileenv
 
 
-FROM alpine:3.8
+FROM alpine:3.9
 
 ARG VERSION
 
 RUN apk add --no-cache python2 py2-pyldap git
 
-RUN git clone --branch "R-2.16.1" --single-branch --depth 1 \
+RUN git clone --branch "R-2.17.1" --single-branch --depth 1 \
     https://github.com/web2py/web2py.git /web2py
 
-RUN git clone --branch "v17.11" --single-branch --depth 1 \
+RUN git clone --branch "v19.04" --single-branch --depth 1 \
     https://github.com/web2py/pydal.git /web2py/gluon/packages/dal
 
 RUN git clone --branch "$VERSION" --single-branch --depth 1 \
