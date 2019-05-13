@@ -101,6 +101,12 @@ def view_only_create(form):
 def view_only_update(form):
     form.errors.Inventory_Number = "User cannot update record"
 
+# allow login with API key
+def requires_login_or_key():
+    if request.env.http_x_api_key == os.environ["REPORT_API_KEY"]:
+        return lambda fn: fn
+    return auth.requires_login()
+
 crud = Crud(db)
 
 try:

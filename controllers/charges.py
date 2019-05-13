@@ -69,7 +69,7 @@ def add():
         redirect(URL('report',vars=dict(id=form.vars.id)))
     return dict(form=form)
 
-@auth.requires_login()
+@requires_login_or_key()
 def report():
     response.view = 'charges/report.html'
     if 'id' not in request.vars:
