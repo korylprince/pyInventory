@@ -33,10 +33,8 @@ Field("Serial_Number", "string",unique=True),\
 Field("Bag_Tag", "string"),\
 Field("Status", "string",requires=IS_IN_SET(statusTypes,zero="Choose Status")),\
 Field("User", "string"),\
-Field("User_Type", "string",requires=IS_IN_SET(userTypes,zero="Choose Type")),\
 Field("Device_Type", "string",requires=IS_IN_SET(deviceTypes,zero="Choose Type")),\
 Field("Manufacturer", "string"),\
-Field("PO_Number", "string"),\
 Field("Model", "string"),\
 Field("Campus", "string"),\
 Field("Room", "string"),\
