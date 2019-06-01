@@ -67,6 +67,13 @@ Field("Charges", "list:string", requires=IS_LIST_OF(IS_CHARGE())),\
 Field("Notes", "text")
 )
 
+# define verifications table
+db.define_table("verifications",
+Field("date", "datetime", requires=IS_NOT_EMPTY()),\
+Field("username", "string", requires=IS_NOT_EMPTY()),\
+Field("device_id", "integer", requires=[IS_IN_DB(db,"devices.id")]),\
+)
+
 # authentication - http://www.web2pyslices.com/slice/show/1468/how-to-set-up-web2py-ldap-with-windows-active-directory
 auth = Auth(db, hmac_key=Auth.get_or_create_key())
 auth.define_tables(username=True)

@@ -54,7 +54,19 @@ def edit():
         session.flash=T("Device Not Found!")
         redirect(URL('index'))
     links = [A('Search for Incidence Reports', _href=URL('charges','edit',vars=dict(search=found[0].Inventory_Number,type='Inventory_Number')))]
-    return dict(form=crud.update(db.devices,foundID),links=links)
+    verification = db(db.verifications.device_id == foundID).select().last()
+    return dict(device_id=foundID, form=crud.update(db.devices,foundID),links=links, verification=verification)
+
+@auth.requires_login()
+def verify():
+    device = db.devices[request.vars["id"]]
+    if device is None:
+        session.flash = "Device Not Found!"
+        return redirect(URL('index'))
+    username = db.auth_user[auth.user_id].username
+    db.verifications.insert(date=request.utcnow, username=username, device_id=device.id)
+    session.flash = "Device verified"
+    return redirect(URL("edit", vars={"type": "id", "search": request.vars["id"]}))
 
 @auth.requires_login()
 def add():

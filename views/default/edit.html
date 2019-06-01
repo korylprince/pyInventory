@@ -34,3 +34,12 @@ $(document).ready(function() {
     });
 });
 </script>
+
+<div style="margin-top: 25px;">
+    <form action="{{=URL('verify', vars=dict(id=device_id))}}" method="post">
+        <button type="submit">Verify Device</button>
+    </form>
+    {{if verification is not None:}}
+    <div>Last verified <script type="text/javascript">d = new Date('{{=verification.date.isoformat()}}Z'); document.write(d.toLocaleDateString() + " " + d.toLocaleTimeString())</script> by {{=verification.username}}.</div>
+    {{pass}}
+</div>
