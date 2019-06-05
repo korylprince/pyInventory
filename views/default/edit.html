@@ -1,4 +1,4 @@
-{{extend 'layout.html'}}   
+{{extend 'layout.html'}}
 {{=form}}
 {{
 if 'links' in vars():
@@ -35,6 +35,7 @@ $(document).ready(function() {
 });
 </script>
 
+{{if "device_id" in globals():}}
 <div style="margin-top: 25px;">
     <form action="{{=URL('verify', vars=dict(id=device_id))}}" method="post">
         <button type="submit">Verify Device</button>
@@ -43,3 +44,4 @@ $(document).ready(function() {
     <div>Last verified <script type="text/javascript">d = new Date('{{=verification.date.isoformat()}}Z'); document.write(d.toLocaleDateString() + " " + d.toLocaleTimeString())</script> by {{=verification.username}}.</div>
     {{pass}}
 </div>
+{{pass}}
