@@ -1,4 +1,4 @@
-FROM golang:1.12-alpine as builder
+FROM golang:1.13-alpine as builder
 
 RUN apk add --no-cache git 
 
@@ -8,7 +8,7 @@ RUN git clone --branch "v1.1" --single-branch --depth 1 \
 RUN go install github.com/korylprince/fileenv
 
 
-FROM alpine:3.9
+FROM alpine:3.10
 
 ARG VERSION
 
