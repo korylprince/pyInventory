@@ -17,6 +17,7 @@ chargeSearches = ["Inventory_Number", "User"]
 userTypes = ("Student", "Teacher", "Administrator", "Other")
 deviceTypes = ("Laptop", "Desktop", "Projector", "Printer", "Document Camera", "Scanner", "Interactive Board", "Tablet", "iPod", "Other")
 statusTypes = ("Checked Out", "Warranty", "Insurance", "Repair", "Storage", "Missing", "Retired", "MS Loaner", "HS Loaner")
+campuses = ("BECS", "BPS", "BES", "BIS", "BMS", "BHS", "PRIDE", "BCO", "T&L", "Transportation", "Operations", "Maintenance")
 
 # connect to database
 db = DAL("mysql://{user}:{passwd}@{host}/{dbname}".format(
@@ -36,7 +37,7 @@ Field("User", "string"),\
 Field("Device_Type", "string",requires=IS_IN_SET(deviceTypes,zero="Choose Type")),\
 Field("Manufacturer", "string"),\
 Field("Model", "string"),\
-Field("Campus", "string"),\
+Field("Campus", "string", requires=IS_EMPTY_OR(IS_IN_SET(campuses))),\
 Field("Room", "string"),\
 Field("Notes", "text")\
 )
