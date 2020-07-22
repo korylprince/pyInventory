@@ -54,7 +54,7 @@ def edit():
         session.flash=T("Device Not Found!")
         redirect(URL('index'))
     links = [A('Search for Incidence Reports', _href=URL('charges','edit',vars=dict(search=found[0].Inventory_Number,type='Inventory_Number')))]
-    verification = db(db.verifications.device_id == foundID).select().last()
+    verification = db(db.verifications.device_id == foundID).select(orderby=db.verifications.date).last()
     return dict(device_id=foundID, form=crud.update(db.devices,foundID),links=links, verification=verification)
 
 @auth.requires_login()
