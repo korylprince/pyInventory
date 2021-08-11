@@ -20,6 +20,9 @@ def search():
         return dict(records=records)
     for col in db.devices.fields:
         request.vars['chk'+col] = 'on'
+    if request.vars['opStatus'] is None and request.vars['txtStatus'] is None:
+        request.vars['opStatus'] = 'not equal'
+        request.vars['txtStatus'] = 'Retired'
     form, records = crud.search(db.devices)
     #Check if no devices found
     if len(records) == 0 and records != []:
@@ -39,7 +42,10 @@ def edit():
         redirect(URL('edit',vars=request.vars))
     # see if any records contain the search text unless id is given
     if request.vars['type'] != 'id':
-        found = db(db.devices[request.vars['type']].like('%'+request.vars['search']+'%')).select()
+        if request.vars['type'] == 'User':
+            found = db((db.devices[request.vars['type']].like('%'+request.vars['search']+'%')) & (db.devices.Status != 'Retired')).select()
+        else:
+            found = db(db.devices[request.vars['type']].like('%'+request.vars['search']+'%')).select()
     else:
         found = db(db.devices.id == request.vars['search']).select()
     # Multiple records returned so show search page
