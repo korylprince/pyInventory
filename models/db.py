@@ -39,7 +39,8 @@ Field("Manufacturer", "string"),\
 Field("Model", "string"),\
 Field("Campus", "string", requires=IS_EMPTY_OR(IS_IN_SET(campuses))),\
 Field("Room", "string"),\
-Field("Notes", "text")\
+Field("Notes", "text"),\
+Field("Flags", "text", writable=False, represent=lambda val, row: [v.strip() for v in val.strip().split(",")])\
 )
 
 class IS_CHARGE(object):

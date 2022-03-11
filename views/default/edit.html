@@ -1,5 +1,14 @@
 {{extend 'layout.html'}}
+
+<style>
+.flag-ecf {
+    background-color: #f4cccc;
+}
+</style>
+
+<div class="{{=(' '.join(['flag-'+f.lower() for f in flags]))}}">
 {{=form}}
+</div>
 {{
 if 'links' in vars():
     for link in links:

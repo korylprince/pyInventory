@@ -61,7 +61,11 @@ def edit():
         redirect(URL('index'))
     links = [A('Search for Incidence Reports', _href=URL('charges','edit',vars=dict(search=found[0].Inventory_Number,type='Inventory_Number')))]
     verification = db(db.verifications.device_id == foundID).select(orderby=db.verifications.date).last()
-    return dict(device_id=foundID, form=crud.update(db.devices,foundID),links=links, verification=verification)
+    flag_rows = db(db.devices.id == foundID).select(db.devices.Flags)
+    flags = []
+    if len(flag_rows) == 1:
+        flags = [v.strip() for v in flag_rows[0].Flags.strip().split(",")]
+    return dict(device_id=foundID, form=crud.update(db.devices,foundID),links=links, verification=verification, flags=flags)
 
 @auth.requires_login()
 def verify():
