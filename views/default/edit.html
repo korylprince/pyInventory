@@ -6,7 +6,11 @@
 }
 </style>
 
-<div class="{{=(' '.join(['flag-'+f.lower() for f in flags]))}}">
+<div
+{{if "flags" in globals():}}
+     class="{{=(' '.join(['flag-'+f.lower() for f in flags]))}}"
+{{pass}}
+>
 {{=form}}
 </div>
 {{
