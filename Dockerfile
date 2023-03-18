@@ -2,10 +2,7 @@ FROM golang:1-alpine as builder
 
 RUN apk add --no-cache git 
 
-RUN git clone --branch "v1.1" --single-branch --depth 1 \
-    https://github.com/korylprince/fileenv.git /go/src/github.com/korylprince/fileenv
-
-RUN go install github.com/korylprince/fileenv
+RUN go install github.com/korylprince/fileenv@v1.1.0
 
 RUN git clone --branch "R-2.17.1" --single-branch --depth 1 \
     https://github.com/web2py/web2py.git /web2py
@@ -23,9 +20,6 @@ COPY --from=builder /web2py /web2py
 COPY --from=builder /dal /web2py/gluon/packages/dal
 
 COPY . /web2py/applications/inventory
-
-RUN git clone --branch "$VERSION" --single-branch --depth 1 \
-    https://github.com/korylprince/pyInventory.git /web2py/applications/inventory
 
 # set base URL parameters
 RUN echo 'routers = {"BASE": {"default_application": "inventory", "default_controller": "default"}}' > /web2py/routes.py
