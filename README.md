@@ -16,10 +16,6 @@ After the tables are created set migrate back to False.
 
 If you are installing over an existing database, but your database metadata got deleted, set migrate=False,fake\_migrate\_all=True to create metadata then remove the fake\_migrate\_all.
 
-To use Active Directory with allowed groups, currently web2py must be patched.
-Please see http://www.web2pyslices.com/slice/show/1493/active-directory-ldap-with-allowed-groups on how to set that up.
-This issue has been fixed in a new development version of web2py.
-
 If you have any issues or questions, email the email address below, or open an issue at:
 https://github.com/korylprince/pyInventory/issues
 
