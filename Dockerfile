@@ -22,7 +22,7 @@ RUN apk add --no-cache python2 py2-pyldap
 COPY --from=builder /web2py /web2py
 COPY --from=builder /dal /web2py/gluon/packages/dal
 
-COPY pyInventory /web2py/applications/inventory
+COPY . /web2py/applications/inventory
 
 RUN git clone --branch "$VERSION" --single-branch --depth 1 \
     https://github.com/korylprince/pyInventory.git /web2py/applications/inventory
