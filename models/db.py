@@ -16,7 +16,7 @@ chargeSearches = ["Inventory_Number", "User"]
 # set enumeration fields
 userTypes = ("Student", "Teacher", "Administrator", "Other")
 deviceTypes = ("Laptop", "Desktop", "Projector", "Printer", "Document Camera", "Scanner", "Interactive Board", "Tablet", "iPod", "Other")
-statusTypes = ("Checked Out", "Warranty", "Insurance", "Repair", "Storage", "Missing", "Retired", "MS Loaner", "HS Loaner")
+statusTypes = ("Checked Out", "Warranty", "Insurance", "Repair", "Storage", "Missing", "Retired")
 campuses = ("BECS", "BPS", "BES", "BIS", "BMS", "BHS", "PRIDE", "BCO", "T&L", "Transportation", "Operations", "Maintenance")
 
 # connect to database
