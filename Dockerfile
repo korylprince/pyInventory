@@ -4,9 +4,9 @@ RUN apk add --no-cache git
 
 RUN go install github.com/korylprince/fileenv@v1.1.0
 
-RUN git clone --branch "v2.24.1" --single-branch --depth 1 \
+RUN git clone --branch "security-fix" --single-branch --depth 1 \
     --recurse-submodules --shallow-submodules \
-    https://github.com/web2py/web2py.git /web2py
+    https://github.com/korylprince/web2py.git /web2py
 
 RUN rm -rf /web2py/applications/examples /web2py/applications/welcome
 
