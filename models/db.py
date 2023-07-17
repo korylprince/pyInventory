@@ -29,18 +29,18 @@ db = DAL("mysql://{user}:{passwd}@{host}/{dbname}".format(
 
 # define device table
 db.define_table("devices",
-Field("Inventory_Number", "string",unique=True),\
-Field("Serial_Number", "string",unique=True),\
-Field("Bag_Tag", "string"),\
-Field("Status", "string",requires=IS_IN_SET(statusTypes,zero="Choose Status")),\
-Field("User", "string"),\
-Field("Device_Type", "string",requires=IS_IN_SET(deviceTypes,zero="Choose Type")),\
-Field("Manufacturer", "string"),\
-Field("Model", "string"),\
-Field("Campus", "string", requires=IS_EMPTY_OR(IS_IN_SET(campuses))),\
-Field("Room", "string"),\
-Field("Notes", "text"),\
-Field("Flags", "text", writable=False, represent=lambda val, row: [v.strip() for v in val.strip().split(",")])\
+Field("Inventory_Number", "string",unique=True, notnull=True),\
+Field("Serial_Number", "string",unique=True, notnull=True),\
+Field("Bag_Tag", "string", notnull=True),\
+Field("Status", "string",requires=IS_IN_SET(statusTypes,zero="Choose Status"), notnull=True),\
+Field("User", "string", notnull=True),\
+Field("Device_Type", "string",requires=IS_IN_SET(deviceTypes,zero="Choose Type"), notnull=True),\
+Field("Manufacturer", "string", notnull=True),\
+Field("Model", "string", notnull=True),\
+Field("Campus", "string", requires=IS_EMPTY_OR(IS_IN_SET(campuses)), notnull=True),\
+Field("Room", "string", notnull=True),\
+Field("Notes", "text", notnull=True),\
+Field("Flags", "text", writable=False, notnull=True, represent=lambda val, row: [v.strip() for v in val.strip().split(",")])\
 )
 
 class IS_CHARGE(object):
