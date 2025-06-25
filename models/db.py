@@ -18,7 +18,7 @@ userTypes = ("Student", "Teacher", "Administrator", "Other")
 deviceTypes = ("Laptop", "Desktop", "Projector", "Printer", "Document Camera", "Scanner", "Interactive Board", "Tablet", "iPod", "Other")
 statusTypes = ("Checked Out", "Warranty", "Insurance", "Repair", "Storage", "Missing", "Retired")
 campuses = ("BECS", "BPS", "BES", "BIS", "BMS", "BHS", "PRIDE", "BCO", "T&L", "Transportation", "Operations", "Maintenance")
-warrantyTypes = ("Not Set", "No Extended Warranty", "AppleCare+", "Dell TechDirect")
+warrantyTypes = ("No Extended Warranty", "AppleCare+", "Dell TechDirect")
 
 # connect to database
 db = DAL("mysql://{user}:{passwd}@{host}/{dbname}".format(
@@ -41,8 +41,8 @@ Field("Model", "string", notnull=True),\
 Field("Campus", "string", requires=IS_EMPTY_OR(IS_IN_SET(campuses)), notnull=True),\
 Field("Room", "string", notnull=True),\
 Field("Notes", "text", notnull=True),\
-Field("Warranty_Type", "string", requires=IS_IN_SET(warrantyTypes,zero="Not Set"), notnull=True),\
-Field("Warranty_Expiration", "date", notnull=True),\
+Field("Warranty_Type", "string", requires=IS_EMPTY_OR(IS_IN_SET(warrantyTypes,zero="Not Set/Unknown")), notnull=True),\
+Field("Warranty_Expiration", "date", requires=IS_EMPTY_OR(IS_DATE()), notnull=True),\
 Field("Flags", "text", writable=False, notnull=True, represent=lambda val, row: [v.strip() for v in val.strip().split(",")])\
 )
 
